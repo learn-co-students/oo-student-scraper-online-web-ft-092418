@@ -24,7 +24,21 @@ class Scraper
       :bio => doc.css("div.bio-block p").text,
       :profile_quote => doc.css("div.profile-quote").text,
     }
-    doc.css(".social-icon-container a")
+    doc.css(".social-icon-container a").each {
+      |element|
+      link=element.href("a")
+      domain = link.split("/")[2]
+           case splitLink
+      when "github.com"
+        student_hash[:github] = link
+      when "twitter.com"
+        student_hash[:twitter] = link
+      when "www.linkedin.com"
+        student_hash[:linkedin] = link
+      else
+        student_hash[:blog] = link
+      end
+    }
     
     
     student_hash
