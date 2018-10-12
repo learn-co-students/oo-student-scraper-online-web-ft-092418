@@ -26,9 +26,9 @@ class Scraper
     }
     doc.css(".social-icon-container a").each {
       |element|
-      link=element.href("a")
+      link=element.attr("href")
       domain = link.split("/")[2]
-           case splitLink
+      case domain
       when "github.com"
         student_hash[:github] = link
       when "twitter.com"
